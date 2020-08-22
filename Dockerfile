@@ -23,6 +23,7 @@ RUN apt-get update && \
         php7.4-bcmath \
         php7.4-gd \ 
         php7.4-intl \
+        php7.4-zip \
         php7.4-soap -y 
 EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
