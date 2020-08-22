@@ -4,3 +4,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt update && \
     apt install apache2 -y && \
     apt install php7.4 -y
+EXPOSE 80
+CMD ["apachectl", "-D", "FOREGROUND"]
+
