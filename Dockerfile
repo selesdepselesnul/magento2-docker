@@ -16,7 +16,7 @@ RUN apt-get install software-properties-common && \
         php7.4-xml \
         php7.4-cli \
         php7.4-zip \ 
-        php7.4-soap
+        php7.4-soap -y
 EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
 
