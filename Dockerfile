@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get install software-properties-common -y && \
     add-apt-repository ppa:ondrej/php && \
     apt update && \
-    apt install php7.4-fpm \ 
+    apt install apache2 php7.4-fpm \ 
         php7.4-common \
         php7.4-mysql \
         php7.4-gmp \
@@ -21,4 +21,3 @@ RUN apt-get update && \
         php7.4-soap -y 
 EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
-

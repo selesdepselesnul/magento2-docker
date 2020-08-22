@@ -1,0 +1,42 @@
+version: '3.0'
+
+services:
+  magento2-web:
+    image: selesdepselesnul/magento2:latest
+    ports:
+      - "80:80"
+    links:
+      - magento2
+    volumes:
+      - ".:/var/www/html"
+
+  magento2:
+    image: mysql:8.0.21
+    ports:
+      - "3306:3306"    
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: magento2
+    volumes:
+      - "magento2-data:/var/lib/mysql"
+
+  magento2-adminer:
+    image: adminer:4.6.3-standalone
+    ports:
+      - "1337:8080"
+
+  magento2-elasticsearch:
+    image: elasticsearch:7.6.2
+    ports:
+      - "9300:9300"    
+    volumes: 
+      - "magento2-elasticsearch-data:/usr/share/elasticsearch/data"
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+volumes:
+  magento2-data:
+  magento2-elasticsearch-data:
