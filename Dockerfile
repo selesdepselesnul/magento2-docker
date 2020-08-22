@@ -1,7 +1,8 @@
 FROM ubuntu:20.04
 ENV TZ=Asia/Jakarta
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN apt-get install software-properties-common && \
+RUN apt-get update && \
+    apt-get install software-properties-common -y && \
     add-apt-repository ppa:ondrej/php && \
     apt update && \
     apt install php7.4-fpm \ 
@@ -13,10 +14,11 @@ RUN apt-get install software-properties-common && \
         php7.4-mbstring \
         php7.4-xmlrpc \
         php7.4-gd \
+        php7.4-dom \
         php7.4-xml \
         php7.4-cli \
         php7.4-zip \ 
-        php7.4-soap -y
+        php7.4-soap -y 
 EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
 
